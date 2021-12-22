@@ -46,6 +46,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .password("{noop}password")
                 .roles("USER");
         // oleks v6inud teha .and() asemel ka kummalegi kasutajale auth.inMemoryAuthentication jne kasutaja.
+
+        auth.inMemoryAuthentication()
+                .withUser("scott")
+                .password("{noop}tiger")
+                .roles("CUSTOMER");
     }
 
     //    @Override
