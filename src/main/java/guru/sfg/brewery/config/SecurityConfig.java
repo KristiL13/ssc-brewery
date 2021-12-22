@@ -20,6 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     authorize
                             .antMatchers("/", "/webjars/**", "/login", "/resources/**").permitAll()
                             .antMatchers("/beers/find", "/beers*").permitAll()
+                // siin on spetsiifilisemalt m22ratud GET meetod, kuna on REST api lubamisega tegu.
+                // t2nu sellele v6ib teatud m6ttes kasutada siin nii yldist pathi, kuna lubatud on ainult GET.
                             .antMatchers(HttpMethod.GET, "/api/v1/beer/**").permitAll();
                 } )
                 .authorizeRequests()
