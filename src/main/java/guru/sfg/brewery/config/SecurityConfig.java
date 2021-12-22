@@ -31,16 +31,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
+    // elegantsem viis alumisest UserDetailsService overrideimisest
+    // tekitame 2 kasutajat, kasutades "fluent API"d
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("spring")
+        // siin on m22ratud, et kasutada noop password encoderit
+        // noop ei krypteeri salas6na vaid salvestab selle lihtsalt tekstina.
                 .password("{noop}guru")
                 .roles("ADMIN")
                 .and()
                 .withUser("user")
                 .password("{noop}password")
                 .roles("USER");
+        // oleks v6inud teha .and() asemel ka kummalegi kasutajale auth.inMemoryAuthentication jne kasutaja.
     }
 
     //    @Override
@@ -60,19 +65,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //        return new InMemoryUserDetailsManager(admin, user);
 //    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
