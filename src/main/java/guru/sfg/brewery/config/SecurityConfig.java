@@ -38,10 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Bean
     protected UserDetailsService userDetailsService() {
+        // kuna siin kasutatakse default Springi encoderit siis sellega on seotud v6imalikud turvalisuse ohud,
+        // seep2rast on see deprecated.
         UserDetails admin = User.withDefaultPasswordEncoder()
                 .username("spring")
                 .password("guru")
-                .roles("ADMIN")
+                .roles("ADMIN") // security role on kohustuslik
                 .build();
 
         UserDetails user = User.withDefaultPasswordEncoder()
