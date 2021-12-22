@@ -22,11 +22,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by jt on 6/12/20.
  */
-@WebMvcTest
+@WebMvcTest // brings up spring web context
 public class BeerControllerIT {
 
     @Autowired
-    WebApplicationContext wac;
+    WebApplicationContext wac; // adds the ability to use the filters
 
     MockMvc mockMvc;
 
@@ -48,12 +48,12 @@ public class BeerControllerIT {
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders
-                .webAppContextSetup(wac)
+                .webAppContextSetup(wac) // konteksti lisamine
                 .apply(springSecurity())
                 .build();
     }
 
-    @WithMockUser("spring")
+    @WithMockUser("spring") // logib kasutajana "spring" sisse
     @Test
     void findBeers() throws Exception{
         mockMvc.perform(get("/beers/find"))

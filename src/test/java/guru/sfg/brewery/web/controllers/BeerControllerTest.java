@@ -71,7 +71,7 @@ class BeerControllerTest {
         uuid = UUID.fromString(id);
 
         mockMvc = MockMvcBuilders
-                .standaloneSetup(controller)
+                .standaloneSetup(controller) // rohkem nagu yksustestid. ei too tervet konteksti kaasa.
                 .build();
     }
 
