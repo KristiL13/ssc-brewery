@@ -54,7 +54,8 @@ public class BeerControllerIT {
                 .build();
     }
 
-    @WithMockUser("spring")
+    // sobib security loogika testimiseks yldiselt
+    @WithMockUser("springanything") // siia v6ib yksk6ik mida kirjutada. ytleme siin nagu oleks autenditud kasutaja.
     @Test
     void findBeers() throws Exception{
         mockMvc.perform(get("/beers/find"))
@@ -63,9 +64,11 @@ public class BeerControllerIT {
                 .andExpect(model().attributeExists("beer"));
     }
 
+    // credentialsite kontrollimiseks - autentimise loogika kontroll ka
     @Test
     void findBeersWithHttpBasic() throws Exception{
-        mockMvc.perform(get("/beers/find").with(httpBasic("spring", "guru")))
+        mockMvc.perform(get("/beers/find")
+                .with(httpBasic("spring", "guru"))) // siin kontrollib kasutaja ja passi sobivust confist
                 .andExpect(status().isOk())
                 .andExpect(view().name("beers/findBeers"))
                 .andExpect(model().attributeExists("beer"));
