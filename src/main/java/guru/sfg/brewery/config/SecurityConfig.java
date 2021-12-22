@@ -18,7 +18,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 http
                 .authorizeRequests(authorize -> { // index leht ja erinevad fronti .js jmt koodi kaustad, et saaks kuvada lehte
                     // vaatas brauseris Network alt, et millistele staatilistele ressurssidele ei p22se ligi
-                    authorize.antMatchers("/", "/webjars/**", "/login", "/resources/**").permitAll();
+                    authorize.antMatchers("/", "/webjars/**", "/login", "/resources/**").permitAll()
+                            .antMatchers("/beers/find", "/beers*").permitAll();
+        // * annab ligip22su any characters l6pule, aga mitte / taha ehk saab nt olla /beers?=findBeer vmt parameetrid lisatud
+        // ** annab ligip22su ka alamkaustadesse ehk / taha
                 } )
                 .authorizeRequests()
                 .anyRequest().authenticated() // kõik erandid peavad olema toodud yleval pool seda rida

@@ -17,4 +17,11 @@ public class IndexControllerIT extends BaseIT {
         mockMvc.perform(get("/" ))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void testGetFindBeers() throws Exception{
+        mockMvc.perform(get("/beers/find" ))
+                .andExpect(status().isOk());
+    }
+
 }
